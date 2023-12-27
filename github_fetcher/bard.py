@@ -11,7 +11,7 @@ def get_bard_summary(url):
 
     token = 'your_token_goes_here'
     bard = Bard(token=token)
-    # openai.api_key = "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"
+    # openai.api_key = "yourkeyhere"
     if url is not None:
         bard_sum = bard.get_answer("I want to get started working on the following repository. In 5 lines please summarize this repository for me. Give me a brief but extremely informative summary: " + url)['content']
 #         openai.Completion.create(
