@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Easy Source - Medium Projects</title>
+    {% load static %}
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'projects_view' %}">Current</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'starred_projects' %}">Starred Projects</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+                <li class="addcolor">Logged in as {{ user.username }}</li>
+            {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'register' %}">Register</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    <header class="text-center text-light" id="header">
+        <div class="container mt-5">
+            <h1 class="display-3">Intermediate Projects</h1>
+            <p class="lead">Here are some intermediate beginner-friendly projects to help you get started. Happy coding!</p>
+        </div>
+    </header>
+
+    <main>
+        <div id="projects" class="container mt-5">
+            <!-- Projects will be populated here by the script.js -->
+        </div>
+    </main>
+
+    <div id="project-details" class="container mt-5" style="display: none;">
+        <!-- Project details will be populated here -->
+    </div>
+
+    <footer class="text-center mt-5">
+        <div class="container">
+            <p>&copy; 2023 EasySource. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        var projectDifficulty = 'medium'; // Specify the project difficulty
+    </script>
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

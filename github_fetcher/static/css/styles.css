@@ -1,0 +1,189 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f8f9fa;
+    transition: background-color 0.5s;
+    
+}
+
+a {
+    text-decoration: none;
+    
+}
+
+.addcolor {
+    color: #0d6efd;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto; /* Centers the container */
+    padding: 20px; /* Adds some padding to prevent overlap with the navbar */
+    color: #212529;
+}
+
+header.jumbotron {
+    color: white;
+    background: linear-gradient(to right, #6a11cb 0%, #0d6efd 100%);
+    transition: background 0.5s;
+}
+
+h1.display-4, .lead {
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.container h2 {
+    text-align: center;
+    padding: 20px 0;
+    font-weight: bold;
+}
+
+a.btn.btn-primary.btn-lg {
+    font-weight: bold;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.5s, transform 0.5s;
+    background-color: #0d6efd;
+    color: white;
+}
+
+a.btn.btn-primary.btn-lg:hover {
+    transform: scale(1.05);
+    box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.4);
+}
+
+footer {
+    color: white;
+    background: linear-gradient(to right, #6a11cb 0%, #0d6efd 100%);
+}
+
+.project, .issue {
+    margin-top: 20px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    background-color: white;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.5s, transform 0.5s;
+}
+
+.project:hover, .issue:hover {
+    transform: translateY(-10px);
+    box-shadow: 2px 2px 15px rgba(0, 0, 0, 0.2);
+}
+
+.bard-summary {
+    font-family: 'Courier New', monospace;
+    margin-top: 10px;
+    white-space: pre-line;
+    color: #6c757d;
+}
+
+#header {
+    background: linear-gradient(-45deg, #23A6D5, #23D5AB, #23A6D5, #23D5AB);
+    background-size: 400% 400%;
+    animation: Gradient 15s ease infinite;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-project {
+    background-color: #0d6efd;
+    color: white;
+    width: 100%;
+    height: 200px;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease-in-out;
+}
+
+.star-button {
+    background-color: #cccccc; /* Default color for non-starred projects */
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    transition-duration: 0.4s;
+}
+
+.star-button:hover {
+    background-color: #aaaaaa; /* Color when the mouse hovers over the button */
+    color: white;
+}
+
+.star-button.starred {
+    background-color: #ffdd00; /* Color for starred projects */
+    color: black;
+}
+
+.star-button.not-starred {
+    background-color: #cccccc; /* Color for non-starred projects */
+    color: white;
+}
+
+.project-title {
+    font-weight: bold;
+}
+
+.project-header {
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+.project-description,
+.project-summary,
+.issue-description,
+.bard-summary {
+    margin-bottom: 15px;
+}
+
+.summary-header,
+.key-points-header {
+    font-weight: bold;
+    margin-top: 15px;
+}
+
+.project-summary {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+}
+
+.key-points-list {
+    padding-left: 20px;
+}
+
+.key-points-list li {
+    margin-bottom: 5px;
+}
+
+.star-button {
+    margin-left: 10px;
+}
+
+
+
+
+.btn-project:hover {
+    transform: scale(1.05);
+}
+
+/* Mobile styles */

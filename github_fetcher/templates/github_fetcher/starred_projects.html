@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Starred Projects</title>
+    {% load static %}
+
+    <link rel="stylesheet" href="{% static 'css/starred.css' %}">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <!-- Here you can link to your CSS file(s) -->
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'projects_view' %}">Current</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'starred_projects' %}">Starred Projects</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+                <li class="addcolor">Logged in as {{ user.username }}</li>
+            {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'register' %}">Register</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    <h1>Starred Projects</h1>
+    {% for project in projects %}
+    <h2>{{ project.name }}</h2>
+    <p>{{ project.description }}</p>
+    <h3>Summary</h3>
+    <p>{{ project.summary }}</p>
+    <h3>Issues</h3>
+    {% for issue in project.issues %}
+        <div>
+            <h4>{{ issue.title }}</h4>
+            <p>{{ issue.description }}</p>
+        </div>
+    {% endfor %}
+{% empty %}
+    <p>No starred projects yet. Explore more to find interesting projects!</p>
+{% endfor %}
+
+
+    <!-- Here you can link to your JavaScript file(s) -->
+</body>
+</html>

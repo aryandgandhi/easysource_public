@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Easy Source - Easy Projects</title>
+    {% load static %}
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'projects_view' %}">Current</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'starred_projects' %}">Starred Projects</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+                <li class="addcolor">Logged in as {{ user.username }}</li>
+            {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'register' %}">Register</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    <header class="text-center text-light" id="header">
+        <div class="container mt-5">
+            <h1 class="display-3">Beginner Projects</h1>
+            <p class="lead">Here are some completely beginner-friendly projects to help you get started. Happy coding!</p>
+        </div>
+    </header>
+
+    <main>
+        <div id="projects" class="container mt-5">
+            <!-- Projects will be populated here by the script.js -->
+        </div>
+    </main>
+
+    <div id="project-details" class="container mt-5" style="display: none;">
+        <!-- Project details will be populated here -->
+    </div>
+
+    <footer class="text-center mt-5">
+        <div class="container">
+            <p>&copy; 2023 EasySource. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        var projectDifficulty = 'easy'; // Specify the project difficulty
+
+    
+
+        function onProjectClick(projectId) {
+    fetch(`/api/project/${projectId}/`)
+    .then(response => response.json())
+    .then(data => {
+        let projectDiv = document.getElementById('project-details');
+        projectDiv.style.display = 'block'; // Show the project details div
+        projectDiv.innerHTML = `
+        <h2 class="project-title">${data.name}</h2>
+    <p class="project-description">${data.description}</p>
+    <h3 class="project-header">Summary</h3>
+    <p class="project-summary">${data.summary.split('\n').join('</p><p>')}</p>
+    <h3 class="project-header">Issues</h3>
+    ${data.issues.map(issue => `
+        <div class="issue">
+            <h4 class="issue-title">${issue.title}</h4>
+
+            <h4 class="issue-header">Summary</h4>
+            <p class="bard-summary">${issue.bard_summary}</p>
+        </div>`
+    ).join('')}
+`;
+    });
+}
+
+document.addEventListener('DOMContentLoaded', (event) => {
+    let loading = document.getElementById('loading');
+    if (loading) {
+        loading.style.display = 'block';
+    }
+
+    fetch(`/api/projects/${projectDifficulty}/`) // Use the projectDifficulty variable in the fetch URL
+    .then(response => response.json())
+    .then(projects => {
+        if (loading) {
+            loading.style.display = 'none';
+        }
+        let div = document.getElementById('projects');
+        div.innerHTML = '';
+
+        projects.forEach(project => {
+            let projectDiv = document.createElement('div');
+            projectDiv.className = 'project';
+            let starClass = project.starred ? 'starred' : 'not-starred';
+            projectDiv.innerHTML = `
+    <h2><a href="#" onclick="onProjectClick(${project.id}); return false;">${project.name}</a></h2>
+    <button class="star-button ${starClass}" onclick="toggleStar(${project.id}, this);">Star</button>
+    <div class="project-summary">
+        <h3 class="summary-header">Summary</h3>
+        <p>${project.summary.split('*')[0].trim()}</p>
+        <h3 class="key-points-header">Key Points</h3>
+        <ul class="key-points-list">
+            ${project.summary.split('*').slice(1).map(line => `<li>${line.trim()}</li>`).join('')}
+        </ul>
+    </div>`;
+div.appendChild(projectDiv);
+        });
+        
+        });
+    });
+
+function toggleStar(projectId, starButton) {
+    fetch(`/toggle_star/${projectId}/`, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'X-CSRFToken': getCookie('csrftoken') // you would need to define getCookie function to get csrftoken from cookies
+        },
+        body: JSON.stringify({
+            'project_id': projectId
+        })
+    })
+    .then((response) => {
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        return response.json();
+    })
+    .then((data) => {
+        if (data.starred) {
+            starButton.classList.remove('not-starred');
+            starButton.classList.add('starred');
+        } else {
+            starButton.classList.remove('starred');
+            starButton.classList.add('not-starred');
+        }
+    })
+    .catch((error) => {
+        console.error('There has been a problem with your fetch operation:', error);
+    });
+}
+
+
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        let cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            let cookie = cookies[i].trim();
+            // Does this cookie string begin with the name we want?
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
+
+    </script>
+
+
+</body>
+</html>

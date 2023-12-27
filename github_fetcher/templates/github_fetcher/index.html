@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EasySource</title>
+    {% load static %}
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styles2.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <script src="{% static 'js/main.js' %}"></script>
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'projects_view' %}">Current</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'starred_projects' %}">Starred Projects</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+                <li class="addcolor">Logged in as {{ user.username }}</li>
+            {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'register' %}">Register</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    <section class="hero">
+        <div class="stars-container">
+            <h1>EasySource</h1>
+            <p>Get started with open source easily!</p>
+            <a href="#description" id="explore-btn" class="explore-btn">Learn <span class="arrow-down">⬇️</span></a>
+
+        </div>
+    </section>
+    
+
+    <section id="description" class="description-container">
+        <h2>Key Features</h2>
+        <p>
+            Discover What Sets Us Apart 😊!
+        </p>
+        <ul>
+            <li>1. <b>Dynamic Refresh:</b> Explore fresh opportunities with our projects updating every 2 hours.</li>
+            <li>2. <b>Customizable Explanations:</b> Tailor information to your needs for deeper insights into repositories.</li>
+            <li>3. <b>Guided Assistance:</b> Step-by-step guidance makes tackling issues, even for newcomers, a breeze.</li>
+            <li>4. <b>Constant Innovation:</b> With bi-monthly updates, your experience keeps getting better.</li>
+        </ul>
+    </section>
+    <section id="description" class="description-container">
+        <h2>How EasySource Empowers You</h2>
+        <p>
+            Your gateway to the open-source world, curated just for you!
+        </p>
+        <ul>
+            <li>1. <b>Comprehensive Discovery:</b> A wide range of projects ensures endless opportunities.</li>
+            <li>2. <b>Tailored Experience:</b> Difficulty-sorted projects help beginners dive right in.</li>
+            <li>3. <b>Starred Projects:</b> Save and revisit projects that captivate you.</li>
+            <li>4. <b>Community Engagement:</b> Grow together in the open-source landscape with the EasySource community.</li>
+        </ul>
+    </section>
+    <section id="description" class="description-container">
+        <h2>Coming Soon: v3 Update</h2>
+        <p>
+            Get Ready for Even More!
+        </p>
+        <ul>
+            <li>1. Enhanced Search Functionality: Find projects faster with improved search algorithms.</li>
+            <li>2. User Profiles: Customize your experience and connect with other open-source enthusiasts.</li>
+            <li>3. Collaboration Features: Collaborate with friends and colleagues on exciting projects.</li>
+            <li>4. AI-Powered Recommendations: Let our intelligent system guide you to projects that match your interests and skills.</li>
+        </ul>
+    </section>
+    
+
+
+
+</body>
+</html>

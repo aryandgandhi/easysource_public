@@ -1,0 +1,19 @@
+form.form-control {
+    width: 100%;
+    max-width: 400px;
+    padding: 15px;
+    margin: auto;
+}
+
+form.form-control input, form.form-control textarea {
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    width: 100%;
+}
+
+form.form-control button {
+    cursor: pointer;
+    padding: 10px 20px;
+}

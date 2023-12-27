@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Easy Source - Find Your Perfect Project</title>
+    {% load static %}
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="{% url 'index' %}">Home</a></li>
+            <li><a href="{% url 'projects_view' %}">Current</a></li>
+            {% if user.is_authenticated %}
+                <li><a href="{% url 'starred_projects' %}">Starred Projects</a></li>
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+                <li class="addcolor">Logged in as {{ user.username }}</li>
+            {% else %}
+                <li><a href="{% url 'login' %}">Login</a></li>
+                <li><a href="{% url 'register' %}">Register</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+    <header class="text-center text-light" id="header">
+        <div class="container mt-5">
+            <h1 class="display-3">Welcome to EasySource!</h1>
+            <p class="lead">Discover projects that you are passionate about and start contributing to your desired domain. Let's code the future together!</p>
+            <hr class="my-4" style="background-color: #fff;">
+            <p>Choose your area of interest and explore top-notch projects awaiting your contribution.</p>
+
+
+    <main class="text-center">
+        <div class="container mt-5">
+            <div class="row">
+                <div class="col-md-4">
+                    <a href="/easy/" class="btn btn-lg btn-project" role="button">Beginner</a>
+                </div>
+                <div class="col-md-4">
+                    <a href="/medium/" class="btn btn-lg btn-project" role="button">Intermediate</a>
+                </div>
+                <div class="col-md-4">
+                    <a href="/hard/" class="btn btn-lg btn-project" role="button">Advanced</a>
+                </div>
+            </div>
+        </div>
+    </main>
+        </div>
+    </header>
+
+
+    <footer class="text-center mt-5">
+        <div class="container">
+            <p>&copy; 2023 EasySource. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>
