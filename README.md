@@ -2,7 +2,7 @@
 
 ## Introduction
 
-Welcome to EasySource, an innovative web application designed to bridge the gap between new developers and the world of open-source projects. Built with Django, this tool simplifies the exploration of GitHub repositories, offering insights into project structures and coding languages. It helps in understanding and contributing to the vibrant open-source community.
+Welcome to EasySource, a web application designed to bridge the gap between new developers and the world of open-source projects. Built with Django, this tool simplifies the exploration of GitHub repositories, offering insights into project structures and coding languages. It helps in understanding and contributing to the vibrant open-source community.
 
 ## Key Features
 
